@@ -1,0 +1,1 @@
+export { default } from 'ember-force/adapters/salesforce';
