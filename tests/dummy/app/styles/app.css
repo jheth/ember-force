@@ -1,0 +1,11 @@
+html, body {
+  margin: 20px;
+}
+
+/*div {
+  border: 1px solid black;
+}*/
+.form-signin {
+  width: 340px;
+  margin: auto auto;
+}
