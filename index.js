@@ -2,7 +2,6 @@
 /* global jsforce */
 'use strict';
 
-var jsforce = require('jsforce');
 
 module.exports = {
   name: 'ember-force',
@@ -36,6 +35,7 @@ module.exports = {
         ],
         run: function(commandOptions, rawArgs) {
 
+          var jsforce = require('jsforce');
           var relationships = commandOptions.includeRelationships;
           var loginUrl = commandOptions.loginUrl;
           var sobjectType = rawArgs[0];

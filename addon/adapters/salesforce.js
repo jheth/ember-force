@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-
+const { capitalize } = Ember.String;
 /* injected service: sfconn */
 
 export default DS.Adapter.extend(Ember.Evented, {
@@ -19,7 +19,7 @@ export default DS.Adapter.extend(Ember.Evented, {
     console.log("find", type, id);
     return new Ember.RSVP.Promise((resolve, reject) => {
       // Single record retrieval
-      return this.sfconn.sobject(type.modelName.capitalize()).retrieve(id, function(err, data) {
+      return this.sfconn.sobject(type.modelName).retrieve(id, function(err, data) {
         if (err) {
           console.log(err);
           reject(err);
@@ -84,7 +84,7 @@ export default DS.Adapter.extend(Ember.Evented, {
 
     return new Ember.RSVP.Promise((resolve, reject) => {
 
-      var soql = "SELECT " + fields.join(', ') + " FROM " + type.modelName.capitalize();
+      var soql = "SELECT " + fields.join(', ') + " FROM " + capitalize(type.modelName);
       console.log(soql);
       return this.sfconn.query(soql, function(err, result) {
         if (err) {
@@ -118,7 +118,7 @@ export default DS.Adapter.extend(Ember.Evented, {
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       // Single record creation
-      this.sfconn.sobject(type.modelName).create(data, function(err, ret) {
+      this.sfconn.sobject(capitalize(type.modelName)).create(data, function(err, ret) {
         if (err || !ret.success) {
           console.log(err, ret);
           reject(ret);
